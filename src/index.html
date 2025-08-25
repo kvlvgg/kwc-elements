@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+    <title>Stencil Component Starter</title>
+
+    <script type="module" src="/build/kwc.esm.js"></script>
+    <script nomodule src="/build/kwc.js"></script>
+
+    <style>
+      body {
+        background-color: #111111;
+      }
+
+      .grid {
+        display: flex;
+        gap: 24px;
+      }
+
+      /* light */
+      kwc-calendar.calendar {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        width: 300px;
+      }
+
+      kwc-calendar.calendar::part(calendar-input-wrapper) {
+        height: 32px;
+        border: none;
+        outline: none;
+        background-color: rgba(3, 169, 244, 0.2);
+        border-radius: 8px;
+        padding: 0 8px;
+      }
+
+      kwc-calendar.calendar::part(calendar-popup) {
+        box-shadow: 0 2px 7px rgba(0, 0, 0, 0.2);
+        border: none;
+      }
+
+      kwc-calendar.calendar::part(calendar-popup-header) {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 48px;
+      }
+
+      kwc-calendar.calendar::part(header-date) {
+        color: #03a9f4;
+      }
+
+      kwc-calendar.calendar::part(arrow) {
+        border-radius: 50%;
+        aspect-ratio: 1/1;
+        border: none;
+        color: #03a9f4;
+        background-color: transparent;
+      }
+
+      kwc-calendar.calendar::part(arrow):hover {
+        background-color: rgba(3, 169, 244, 0.08);
+      }
+
+      kwc-calendar.calendar::part(date-button) {
+        border: none;
+        border-radius: 50%;
+        aspect-ratio: 1/1;
+        cursor: pointer;
+        background-color: transparent;
+      }
+
+      kwc-calendar.calendar::part(date-button):hover {
+        background-color: rgba(3, 169, 244, 0.24);
+      }
+
+      kwc-calendar.calendar::part(current-date-button) {
+        border: 2px solid #03a9f461;
+      }
+
+      kwc-calendar.calendar::part(selected-date-button) {
+        background-color: #03a9f4;
+      }
+
+      kwc-calendar.calendar::part(selected-date-button):hover {
+        background-color: #03a9f4;
+      }
+
+      kwc-calendar.calendar::part(not-in-view-month-date-button) {
+        opacity: 0.5;
+      }
+
+      kwc-calendar.calendar::part(selected-date-button) {
+        opacity: 1;
+      }
+
+      /* dark */
+      kwc-calendar.calendar.dark {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        width: 300px;
+      }
+
+      kwc-calendar.calendar.dark::part(calendar-input-wrapper) {
+        height: 32px;
+        background-color: rgba(0, 0, 0, 0.87);
+        border-radius: 8px;
+        padding: 0 8px;
+        color: #ffffff;
+      }
+
+      kwc-calendar.calendar.dark::part(calendar-input) {
+        height: 32px;
+        border: none;
+        outline: none;
+        background-color: transparent;
+        padding: 0 8px;
+        color: #ffffff;
+      }
+
+      kwc-calendar.calendar.dark::part(calendar-popup) {
+        box-shadow: 0 2px 7px rgba(0, 0, 0, 0.4);
+        border: none;
+
+        background-color: #363640;
+      }
+
+      kwc-calendar.calendar::part(header-date) {
+        color: #03a9f4;
+      }
+
+      kwc-calendar.calendar::part(arrow) {
+        border-radius: 50%;
+        aspect-ratio: 1/1;
+        border: none;
+        color: #03a9f4;
+        background-color: transparent;
+      }
+
+      kwc-calendar.calendar::part(arrow):hover {
+        background-color: rgba(3, 169, 244, 0.24);
+      }
+
+      kwc-calendar.calendar.dark::part(day-of-week) {
+        color: #ffffff;
+      }
+
+      kwc-calendar.calendar.dark::part(date-button) {
+        border: none;
+        border-radius: 50%;
+        aspect-ratio: 1/1;
+        cursor: pointer;
+        background-color: transparent;
+        color: #ffffff;
+      }
+
+      kwc-calendar.calendar.dark::part(date-button):hover {
+        background-color: rgba(3, 169, 244, 0.24);
+      }
+
+      kwc-calendar.calendar.dark::part(current-date-button) {
+        border: 2px solid #03a9f4;
+      }
+
+      kwc-calendar.calendar.dark::part(selected-date-button) {
+        background-color: #03a9f4;
+        color: rgba(0, 0, 0, 0.87);
+      }
+
+      kwc-calendar.calendar.dark::part(selected-date-button):hover {
+        background-color: #03a9f4;
+        color: rgba(0, 0, 0, 0.87);
+      }
+
+      kwc-calendar.calendar.dark::part(not-in-view-month-date-button) {
+        opacity: 0.5;
+      }
+
+      kwc-calendar.calendar.dark::part(selected-date-button) {
+        opacity: 1;
+      }
+    </style>
+  </head>
+
+  <body>
+    <my-component first="Stencil" middle="'Don't call me a framework'" last="JS"></my-component>
+    <br />
+
+    <input type="date" />
+    <br />
+    <br />
+
+    <div class="grid">
+      <kwc-calendar></kwc-calendar>
+      <kwc-calendar mode="popup"></kwc-calendar>
+    </div>
+
+    <br />
+
+    <div class="grid">
+      <kwc-calendar class="calendar"></kwc-calendar>
+      <kwc-calendar class="calendar" mode="popup"></kwc-calendar>
+    </div>
+
+    <br />
+
+    <div class="grid">
+      <kwc-calendar class="calendar dark"></kwc-calendar>
+      <kwc-calendar class="calendar dark" mode="popup" adjust-popup-to-input></kwc-calendar>
+    </div>
+
+    <br />
+
+    <kwc-calendar id="calendar-1" style="width: 100%" class="calendar dark" mode="popup"></kwc-calendar>
+    <br />
+
+    <div class="grid">
+      <kwc-calendar class="calendar dark" mode="popup" adjust-popup-to-input></kwc-calendar>
+      <kwc-calendar class="calendar dark" mode="popup" adjust-popup-to-input></kwc-calendar>
+      <kwc-calendar class="calendar dark" mode="popup" adjust-popup-to-input></kwc-calendar>
+      <kwc-calendar class="calendar dark" mode="popup" adjust-popup-to-input></kwc-calendar>
+      <kwc-calendar class="calendar dark" mode="popup" adjust-popup-to-input></kwc-calendar>
+    </div>
+
+    <script defer>
+      const calendar = document.querySelector('#calendar-1');
+      calendar.addEventListener('date-changed', e => {
+        console.log('change in index.html', e.detail.toLocaleString());
+      });
+    </script>
+  </body>
+</html>

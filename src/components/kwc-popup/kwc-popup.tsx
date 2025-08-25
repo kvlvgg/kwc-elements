@@ -1,0 +1,67 @@
+import { Component, Host, h, Prop, Element, Method, State } from '@stencil/core';
+import { DOM } from '../../utils/DOM';
+
+@Component({
+  tag: 'kwc-popup',
+  styleUrl: 'kwc-popup.css',
+  shadow: true,
+})
+export class KwcPopup {
+  @Element() el: HTMLElement;
+
+  @Prop() mode: 'static' | 'popup' = 'popup';
+
+  @State() visible: boolean = false;
+
+  clickOutSideCallback: (e: MouseEvent) => void = null;
+
+  @Method()
+  async isOpen() {
+    return this.visible;
+  }
+
+  @Method()
+  async open(anchorEl: HTMLElement, offset: number) {
+    this.visible = true;
+    await new Promise(r => requestAnimationFrame(r));
+    DOM.placeElement(this.el, anchorEl, offset);
+  }
+
+  @Method()
+  async close() {
+    this.visible = false;
+    this.removeClickOutsideEvent();
+  }
+
+  @Method()
+  async adjustWidth(adjustWidthEl: HTMLElement) {
+    DOM.adjustWidth(this.el, adjustWidthEl);
+  }
+
+  @Method()
+  async registerCloseOutside(closeOutsideEl: HTMLElement) {
+    this.addClickOutsideEvent(closeOutsideEl);
+  }
+
+  addClickOutsideEvent(targetEl: HTMLElement) {
+    this.clickOutSideCallback = (e: MouseEvent) => this.onClickOutside(e, targetEl);
+    document.addEventListener('click', this.clickOutSideCallback);
+  }
+
+  removeClickOutsideEvent() {
+    document.removeEventListener('click', this.clickOutSideCallback);
+    this.clickOutSideCallback = null;
+  }
+
+  onClickOutside(e: MouseEvent, targetEl: HTMLElement) {
+    if (DOM.isOutsideClick(e, targetEl)) this.close();
+  }
+
+  render() {
+    return (
+      <Host part="popup" class={{ popup: this.mode === 'popup', hidden: !this.visible }}>
+        <slot></slot>
+      </Host>
+    );
+  }
+}

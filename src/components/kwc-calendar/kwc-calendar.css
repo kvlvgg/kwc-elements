@@ -1,0 +1,84 @@
+:host {
+  position: relative;
+  display: inline-block;
+}
+
+:host * {
+  box-sizing: border-box;
+}
+
+.calendar {
+  background-color: white;
+  padding: 0.5rem;
+  border: 1px solid black;
+  border-radius: 0.25rem;
+
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.25rem;
+  justify-items: center;
+}
+
+.calendar .header {
+  justify-self: normal;
+}
+
+.calendar-input-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.calendar-input {
+  width: 100%;
+  padding-right: 1.4rem;
+}
+
+.calendar-icon-wrapper {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  aspect-ratio: 1/1;
+  top: 0;
+  right: 0;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.calendar-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-bottom: 1px;
+  user-select: none;
+}
+
+.calendar.popup {
+  position: absolute;
+  min-width: fit-content;
+  z-index: 999;
+}
+
+.calendar.popup.hidden {
+  display: none;
+}
+
+.header {
+  grid-column: 1/-1;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 32px;
+}
+
+.day-of-the-week {
+  justify-self: center;
+}
+
+.day {
+  width: 2rem;
+}
