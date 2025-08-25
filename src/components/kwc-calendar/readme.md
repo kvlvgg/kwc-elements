@@ -10,15 +10,17 @@
 | Property             | Attribute               | Description | Type                  | Default    |
 | -------------------- | ----------------------- | ----------- | --------------------- | ---------- |
 | `adjustPopupToInput` | `adjust-popup-to-input` |             | `boolean`             | `false`    |
+| `locale`             | `locale`                |             | `string`              | `null`     |
 | `mode`               | `mode`                  |             | `"popup" \| "static"` | `'static'` |
 | `popupOffset`        | `popup-offset`          |             | `number`              | `4`        |
+| `value`              | `value`                 |             | `Date \| string`      | `null`     |
 
 
 ## Events
 
-| Event          | Description | Type                |
-| -------------- | ----------- | ------------------- |
-| `date-changed` |             | `CustomEvent<Date>` |
+| Event           | Description | Type                |
+| --------------- | ----------- | ------------------- |
+| `value-changed` |             | `CustomEvent<Date>` |
 
 
 ## Shadow Parts

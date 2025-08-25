@@ -8,8 +8,10 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface KwcCalendar {
         "adjustPopupToInput": boolean;
+        "locale": string | null;
         "mode": 'static' | 'popup';
         "popupOffset": number;
+        "value": Date | string | null;
     }
     interface KwcPopup {
         "adjustWidth": (adjustWidthEl: HTMLElement) => Promise<void>;
@@ -40,7 +42,7 @@ export interface KwcCalendarCustomEvent<T> extends CustomEvent<T> {
 }
 declare global {
     interface HTMLKwcCalendarElementEventMap {
-        "date-changed": Date;
+        "value-changed": Date;
     }
     interface HTMLKwcCalendarElement extends Components.KwcCalendar, HTMLStencilElement {
         addEventListener<K extends keyof HTMLKwcCalendarElementEventMap>(type: K, listener: (this: HTMLKwcCalendarElement, ev: KwcCalendarCustomEvent<HTMLKwcCalendarElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -77,9 +79,11 @@ declare global {
 declare namespace LocalJSX {
     interface KwcCalendar {
         "adjustPopupToInput"?: boolean;
+        "locale"?: string | null;
         "mode"?: 'static' | 'popup';
-        "onDate-changed"?: (event: KwcCalendarCustomEvent<Date>) => void;
+        "onValue-changed"?: (event: KwcCalendarCustomEvent<Date>) => void;
         "popupOffset"?: number;
+        "value"?: Date | string | null;
     }
     interface KwcPopup {
         "mode"?: 'static' | 'popup';
