@@ -24,23 +24,23 @@ export class KwcViewBuilder {
 
   padLeft() {
     const [first] = this.view;
-    const lastOfPrevMonth = new KwcDate(new Date(first.year, first.month, 0));
-
-    this.view = [...Array.from({ length: (first.dayOfWeek - this.localization.firstDayOfWeek + 7) % 7 }, (_, i) => lastOfPrevMonth.substract({ days: i })).reverse(), ...this.view];
+    this.view = [...Array.from({ length: (first.dayOfWeek - this.localization.firstDayOfWeek + 7) % 7 }, (_, i) => first.substract({ days: i + 1 })).reverse(), ...this.view];
 
     return this;
   }
 
   padRight() {
-    const last = this.view[this.view.length - 1];
-    const firstOfNextMonth = last.add({ days: 1 });
+    const last = this.view.at(-1);
+    this.view = [...this.view, ...Array.from({ length: (7 - last.dayOfWeek + this.localization.firstDayOfWeek - 1) % 7 }, (_, i) => last.add({ days: i + 1 }))];
 
-    const isLessOrEqual35 = this.view.length <= 35;
+    return this;
+  }
 
-    this.view = [
-      ...this.view,
-      ...Array.from({ length: ((7 - last.dayOfWeek + this.localization.firstDayOfWeek - 1) % 7) + (isLessOrEqual35 ? 7 : 0) }, (_, i) => firstOfNextMonth.add({ days: i })),
-    ];
+  extend(options: { weeks: number }) {
+    while (this.view.length < options.weeks * 7) {
+      const last = this.view.at(-1);
+      this.view = [...this.view, ...Array.from({ length: 7 }, (_, i) => last.add({ days: i + 1 }))];
+    }
 
     return this;
   }

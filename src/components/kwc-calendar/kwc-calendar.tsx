@@ -37,7 +37,7 @@ export class KwcCalendar {
   localization!: KwcDateLocalization;
 
   get view(): KwcDate[] {
-    return KwcViewBuilder.create(this.localization).forMonth(this.viewState).padLeft().padRight().done();
+    return KwcViewBuilder.create(this.localization).forMonth(this.viewState).padLeft().padRight().extend({ weeks: 6 }).done();
   }
 
   componentWillLoad() {
