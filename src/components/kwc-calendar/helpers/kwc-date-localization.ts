@@ -17,6 +17,11 @@ export class KwcDateLocalization {
     return formatter.format(new Date(date.year, date.month, date.day));
   }
 
+  getDay(date: KwcDate) {
+    const formatter = new Intl.DateTimeFormat(this.locale, { day: 'numeric' });
+    return formatter.format(new Date(date.year, date.month, date.day));
+  }
+
   getWeekdays(format: 'short' | 'narrow' | 'long' = 'short'): string[] {
     const formatter = new Intl.DateTimeFormat(this.locale, { weekday: format });
 

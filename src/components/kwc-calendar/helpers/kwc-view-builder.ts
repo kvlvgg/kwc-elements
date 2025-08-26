@@ -33,11 +33,14 @@ export class KwcViewBuilder {
 
   padRight() {
     const last = this.view[this.view.length - 1];
-    const firstOfNextMonth = new KwcDate(new Date(last.year, last.month, last.day + 1));
+    const firstOfNextMonth = last.add({ days: 1 });
 
     const isLessOrEqual35 = this.view.length <= 35;
 
-    this.view = [...this.view, ...Array.from({ length: ((7 - last.dayOfWeek) % 7) + (isLessOrEqual35 ? 7 : 0) }, (_, i) => firstOfNextMonth.add({ days: i }))];
+    this.view = [
+      ...this.view,
+      ...Array.from({ length: ((7 - last.dayOfWeek + this.localization.firstDayOfWeek - 1) % 7) + (isLessOrEqual35 ? 7 : 0) }, (_, i) => firstOfNextMonth.add({ days: i })),
+    ];
 
     return this;
   }

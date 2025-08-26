@@ -34,13 +34,13 @@ export class KwcCalendar {
     inputWrapper: null,
   };
 
-  localization: KwcDateLocalization = new KwcDateLocalization();
+  localization!: KwcDateLocalization;
 
   get view(): KwcDate[] {
     return KwcViewBuilder.create(this.localization).forMonth(this.viewState).padLeft().padRight().done();
   }
 
-  componentDidLoad() {
+  componentWillLoad() {
     this.localization = new KwcDateLocalization(this.locale);
     this.onValueChanged(this.value);
   }
@@ -128,7 +128,7 @@ export class KwcCalendar {
               key={`${x.year}-${x.month}-${x.day}`}
               onClick={() => this.setSelectedDate(x)}
             >
-              {x.day}
+              {this.localization.getDay(x)}
             </button>
           ))}
         </kwc-popup>
