@@ -1,84 +1,76 @@
-:host {
-  position: relative;
-  display: inline-block;
-}
-
 :host * {
   box-sizing: border-box;
 }
 
-.calendar {
+:host {
+  box-sizing: border-box;
+  position: relative;
+
   background-color: white;
   padding: 0.5rem;
   border: 1px solid black;
-  border-radius: 0.25rem;
 
-  display: grid;
+  display: inline-grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 0.25rem;
   justify-items: center;
-}
 
-.calendar .header {
-  justify-self: normal;
-}
-
-.calendar-input-wrapper {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-}
-
-.calendar-input {
-  width: 100%;
-  padding-right: 1.4rem;
-}
-
-.calendar-icon-wrapper {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  aspect-ratio: 1/1;
-  top: 0;
-  right: 0;
-  font-size: 0.8rem;
-  cursor: pointer;
-}
-
-.calendar-icon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  margin-bottom: 1px;
   user-select: none;
-}
-
-.calendar.popup {
-  position: absolute;
-  min-width: fit-content;
-  z-index: 999;
-}
-
-.calendar.popup.hidden {
-  display: none;
 }
 
 .header {
   grid-column: 1/-1;
 
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 32px;
 }
 
-.day-of-the-week {
+.header .arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: transparent;
+  padding: 0;
+  border: 1px solid transparent;
+  font-size: 1.4rem;
+}
+
+.header .arrow:hover {
+  background-color: #bed6fe;
+  border: 1px solid black;
+}
+
+.weekday {
+  height: 1.6rem;
   justify-self: center;
 }
 
-.day {
-  width: 2rem;
+.btn-day {
+  width: 1.7rem;
+  font-size: 0.8rem;
+  aspect-ratio: 1/1;
+  border: none;
+  background-color: transparent;
+  padding: 0;
+}
+
+.btn-day:hover {
+  background-color: #bed6fe;
+  border: 1px solid black;
+}
+
+.btn-day.selected {
+  background-color: #2876fc;
+  color: #ffffff;
+  border: 2px solid black;
+}
+
+.btn-day.current:not(.selected) {
+  border: 1px solid black;
+}
+
+.btn-day.out-of-month {
+  color: #767676;
 }

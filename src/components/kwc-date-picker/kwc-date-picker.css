@@ -1,0 +1,17 @@
+:host {
+  display: block;
+  position: relative;
+}
+
+.calendar-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-bottom: 1px;
+  user-select: none;
+}
+
+.calendar {
+  width: 100%;
+}

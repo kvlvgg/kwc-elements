@@ -1,34 +1,15 @@
-export const FIRST_DAY_OF_WEEK: Record<string, number> = {
-  // Sunday (0)
-  'en-US': 0,
-  'en-PH': 0,
-  'en-CA': 0,
-  'he-IL': 0,
-  'zh-TW': 0,
-  'th-TH': 0,
-  'ar-SA': 0,
-  'ja-JP': 0,
+export const PARTS = {
+  CALENDAR: 'calendar',
+  CALENDAR_HEADER: 'calendar-header',
+  CALENDAR_NAV: 'calendar-nav',
+  CALENDAR_NAV__PREV: 'calendar-nav--prev',
+  CALENDAR_MONTH_LABEL: 'calendar-month-label',
+  CALENDAR_NAV__NEXT: 'calendar-nav--next',
 
-  // Monday (1)
-  'en-GB': 1,
-  'en-AU': 1,
-  'de-DE': 1,
-  'fr-FR': 1,
-  'ru-RU': 1,
-  'es-ES': 1,
-  'pt-BR': 1,
-  'zh-CN': 1,
-  'ko-KR': 1,
-  'it-IT': 1,
-  'pl-PL': 1,
-  'nl-NL': 1,
-  'tr-TR': 1,
-  'cs-CZ': 1,
-  'ro-RO': 1,
-  'sv-SE': 1,
-  'fi-FI': 1,
+  CALENDAR_WEEK_DAY: 'calendar-weekday',
 
-  // Saturday (6)
-  'ar-EG': 6,
-  'ar-IL': 6,
-};
+  CALENDAR_DAY: 'calendar-day',
+  CALENDAR_DAY__CURRENT: 'calendar-day--current',
+  CALENDAR_DAY__SELECTED: 'calendar-day--selected',
+  CALENDAR_DAY__OUT_OF_MONTH: 'calendar-day--out-of-month',
+} as const;

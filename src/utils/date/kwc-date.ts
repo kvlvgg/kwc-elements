@@ -4,6 +4,10 @@ export class KwcDate {
   readonly day: number;
   readonly dayOfWeek: number;
 
+  static now() {
+    return new KwcDate();
+  }
+
   constructor(date: Date = new Date()) {
     this.year = date.getFullYear();
     this.month = date.getMonth();

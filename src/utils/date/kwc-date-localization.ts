@@ -1,4 +1,4 @@
-import { FIRST_DAY_OF_WEEK } from '../constants';
+import { FIRST_DAY_OF_WEEK } from './constants';
 import { KwcDate } from './kwc-date';
 
 export class KwcDateLocalization {
@@ -14,12 +14,12 @@ export class KwcDateLocalization {
 
   getDate(date: KwcDate) {
     const formatter = new Intl.DateTimeFormat(this.locale);
-    return formatter.format(new Date(date.year, date.month, date.day));
+    return formatter.format(date.toDate());
   }
 
   getDay(date: KwcDate) {
     const formatter = new Intl.DateTimeFormat(this.locale, { day: 'numeric' });
-    return formatter.format(new Date(date.year, date.month, date.day));
+    return formatter.format(date.toDate());
   }
 
   getWeekdays(format: 'short' | 'narrow' | 'long' = 'short'): string[] {
@@ -41,6 +41,6 @@ export class KwcDateLocalization {
   getMonth(date: KwcDate) {
     const formatter = new Intl.DateTimeFormat(this.locale, { month: 'long', year: 'numeric' });
 
-    return formatter.format(new Date(date.year, date.month, date.day));
+    return formatter.format(date.toDate());
   }
 }

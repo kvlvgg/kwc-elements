@@ -1,4 +1,4 @@
-# kwc-calendar
+# kwc-date-picker
 
 
 
@@ -12,28 +12,32 @@
 | `adjustPopupToInput` | `adjust-popup-to-input` |             | `boolean`             | `false`    |
 | `locale`             | `locale`                |             | `string`              | `null`     |
 | `mode`               | `mode`                  |             | `"popup" \| "static"` | `'static'` |
-| `popupOffset`        | `popup-offset`          |             | `number`              | `0`        |
+| `popupOffsetY`       | `popup-offset-y`        |             | `number`              | `0`        |
 | `value`              | `value`                 |             | `Date \| string`      | `null`     |
 
 
 ## Events
 
-| Event           | Description | Type                                                                                |
-| --------------- | ----------- | ----------------------------------------------------------------------------------- |
-| `value-changed` |             | `CustomEvent<{ localization: KwcDateLocalization; kwcDate: KwcDate; date: Date; }>` |
+| Event           | Description | Type                |
+| --------------- | ----------- | ------------------- |
+| `value-changed` |             | `CustomEvent<Date>` |
 
 
 ## Dependencies
 
-### Used by
+### Depends on
 
- - [kwc-date-picker](../kwc-date-picker)
+- [kwc-input-group](../kwc-input-group)
+- [kwc-popup](../kwc-popup)
+- [kwc-calendar](../kwc-calendar)
 
 ### Graph
 ```mermaid
 graph TD;
+  kwc-date-picker --> kwc-input-group
+  kwc-date-picker --> kwc-popup
   kwc-date-picker --> kwc-calendar
-  style kwc-calendar fill:#f9f,stroke:#333,stroke-width:4px
+  style kwc-date-picker fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

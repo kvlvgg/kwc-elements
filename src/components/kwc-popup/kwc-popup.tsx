@@ -1,6 +1,8 @@
 import { Component, Host, h, Prop, Element, Method, State } from '@stencil/core';
 import { DOM } from '../../utils/DOM';
 
+import { PARTS } from './constants';
+
 @Component({
   tag: 'kwc-popup',
   styleUrl: 'kwc-popup.css',
@@ -59,7 +61,7 @@ export class KwcPopup {
 
   render() {
     return (
-      <Host part="popup" class={{ popup: this.mode === 'popup', hidden: !this.visible }}>
+      <Host part={PARTS.POPUP} class={{ popup: this.mode === 'popup', hidden: !this.visible }}>
         <slot></slot>
       </Host>
     );

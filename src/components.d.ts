@@ -5,6 +5,10 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { KwcDateLocalization } from "./utils/date/kwc-date-localization";
+import { KwcDate } from "./utils/date/kwc-date";
+export { KwcDateLocalization } from "./utils/date/kwc-date-localization";
+export { KwcDate } from "./utils/date/kwc-date";
 export namespace Components {
     interface KwcCalendar {
         "adjustPopupToInput": boolean;
@@ -12,6 +16,16 @@ export namespace Components {
         "mode": 'static' | 'popup';
         "popupOffset": number;
         "value": Date | string | null;
+    }
+    interface KwcDatePicker {
+        "adjustPopupToInput": boolean;
+        "locale": string | null;
+        "mode": 'static' | 'popup';
+        "popupOffsetY": number;
+        "value": Date | string | null;
+    }
+    interface KwcInputGroup {
+        "value": string;
     }
     interface KwcPopup {
         "adjustWidth": (adjustWidthEl: HTMLElement) => Promise<void>;
@@ -40,9 +54,17 @@ export interface KwcCalendarCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLKwcCalendarElement;
 }
+export interface KwcDatePickerCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLKwcDatePickerElement;
+}
 declare global {
     interface HTMLKwcCalendarElementEventMap {
-        "value-changed": Date;
+        "value-changed": {
+    localization: KwcDateLocalization;
+    kwcDate: KwcDate;
+    date: Date;
+  };
     }
     interface HTMLKwcCalendarElement extends Components.KwcCalendar, HTMLStencilElement {
         addEventListener<K extends keyof HTMLKwcCalendarElementEventMap>(type: K, listener: (this: HTMLKwcCalendarElement, ev: KwcCalendarCustomEvent<HTMLKwcCalendarElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -58,6 +80,29 @@ declare global {
         prototype: HTMLKwcCalendarElement;
         new (): HTMLKwcCalendarElement;
     };
+    interface HTMLKwcDatePickerElementEventMap {
+        "value-changed": Date;
+    }
+    interface HTMLKwcDatePickerElement extends Components.KwcDatePicker, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLKwcDatePickerElementEventMap>(type: K, listener: (this: HTMLKwcDatePickerElement, ev: KwcDatePickerCustomEvent<HTMLKwcDatePickerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLKwcDatePickerElementEventMap>(type: K, listener: (this: HTMLKwcDatePickerElement, ev: KwcDatePickerCustomEvent<HTMLKwcDatePickerElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLKwcDatePickerElement: {
+        prototype: HTMLKwcDatePickerElement;
+        new (): HTMLKwcDatePickerElement;
+    };
+    interface HTMLKwcInputGroupElement extends Components.KwcInputGroup, HTMLStencilElement {
+    }
+    var HTMLKwcInputGroupElement: {
+        prototype: HTMLKwcInputGroupElement;
+        new (): HTMLKwcInputGroupElement;
+    };
     interface HTMLKwcPopupElement extends Components.KwcPopup, HTMLStencilElement {
     }
     var HTMLKwcPopupElement: {
@@ -72,6 +117,8 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "kwc-calendar": HTMLKwcCalendarElement;
+        "kwc-date-picker": HTMLKwcDatePickerElement;
+        "kwc-input-group": HTMLKwcInputGroupElement;
         "kwc-popup": HTMLKwcPopupElement;
         "my-component": HTMLMyComponentElement;
     }
@@ -81,9 +128,24 @@ declare namespace LocalJSX {
         "adjustPopupToInput"?: boolean;
         "locale"?: string | null;
         "mode"?: 'static' | 'popup';
-        "onValue-changed"?: (event: KwcCalendarCustomEvent<Date>) => void;
+        "onValue-changed"?: (event: KwcCalendarCustomEvent<{
+    localization: KwcDateLocalization;
+    kwcDate: KwcDate;
+    date: Date;
+  }>) => void;
         "popupOffset"?: number;
         "value"?: Date | string | null;
+    }
+    interface KwcDatePicker {
+        "adjustPopupToInput"?: boolean;
+        "locale"?: string | null;
+        "mode"?: 'static' | 'popup';
+        "onValue-changed"?: (event: KwcDatePickerCustomEvent<Date>) => void;
+        "popupOffsetY"?: number;
+        "value"?: Date | string | null;
+    }
+    interface KwcInputGroup {
+        "value"?: string;
     }
     interface KwcPopup {
         "mode"?: 'static' | 'popup';
@@ -104,6 +166,8 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "kwc-calendar": KwcCalendar;
+        "kwc-date-picker": KwcDatePicker;
+        "kwc-input-group": KwcInputGroup;
         "kwc-popup": KwcPopup;
         "my-component": MyComponent;
     }
@@ -113,6 +177,8 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "kwc-calendar": LocalJSX.KwcCalendar & JSXBase.HTMLAttributes<HTMLKwcCalendarElement>;
+            "kwc-date-picker": LocalJSX.KwcDatePicker & JSXBase.HTMLAttributes<HTMLKwcDatePickerElement>;
+            "kwc-input-group": LocalJSX.KwcInputGroup & JSXBase.HTMLAttributes<HTMLKwcInputGroupElement>;
             "kwc-popup": LocalJSX.KwcPopup & JSXBase.HTMLAttributes<HTMLKwcPopupElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
         }

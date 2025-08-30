@@ -11,13 +11,3 @@
 :host(.popup.hidden) {
   display: none;
 }
-
-/* .popup {
-  position: absolute;
-  min-width: fit-content;
-  z-index: 999;
-}
-
-.popup.hidden {
-  display: none;
-} */

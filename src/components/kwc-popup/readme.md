@@ -84,23 +84,16 @@ Type: `Promise<void>`
 
 
 
-## Shadow Parts
-
-| Part      | Description |
-| --------- | ----------- |
-| `"popup"` |             |
-
-
 ## Dependencies
 
 ### Used by
 
- - [kwc-calendar](../kwc-calendar)
+ - [kwc-date-picker](../kwc-date-picker)
 
 ### Graph
 ```mermaid
 graph TD;
-  kwc-calendar --> kwc-popup
+  kwc-date-picker --> kwc-popup
   style kwc-popup fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

@@ -21,6 +21,10 @@
       "import": "./dist/components/kwc-calendar.js",
       "types": "./dist/components/kwc-calendar.d.ts"
     },
+    "./kwc-date-picker": {
+      "import": "./dist/components/kwc-date-picker.js",
+      "types": "./dist/components/kwc-date-picker.d.ts"
+    },
     "./loader": {
       "import": "./loader/index.js",
       "require": "./loader/index.cjs",
