@@ -1,8 +1,10 @@
 export class KwcDate {
-  readonly year: number;
-  readonly month: number;
-  readonly day: number;
-  readonly dayOfWeek: number;
+  year: number;
+  month: number;
+  day: number;
+  dayOfWeek: number;
+  hours: number;
+  minutes: number;
 
   static now() {
     return new KwcDate();
@@ -13,6 +15,8 @@ export class KwcDate {
     this.month = date.getMonth();
     this.day = date.getDate();
     this.dayOfWeek = date.getDay();
+    this.hours = date.getHours();
+    this.minutes = date.getMinutes();
   }
 
   get daysInMonth(): number {
@@ -23,19 +27,43 @@ export class KwcDate {
     return new KwcDate(new Date(this.year, this.month));
   }
 
-  isEqual(date: KwcDate) {
+  isEqualByDate(date: KwcDate) {
     return this.year === date.year && this.month === date.month && this.day === date.day && this.dayOfWeek === date.dayOfWeek;
   }
 
-  add(diff: { months?: number; days?: number }): KwcDate {
-    return new KwcDate(new Date(this.year, this.month + (diff.months ?? 0), this.day + (diff.days ?? 0)));
+  setDate(date: KwcDate) {
+    this.year = date.year;
+    this.month = date.month;
+    this.day = date.day;
+
+    return this;
   }
 
-  substract(diff: { months?: number; days?: number }): KwcDate {
-    return new KwcDate(new Date(this.year, this.month - (diff.months ?? 0), this.day - (diff.days ?? 0)));
+  add(diff: { months?: number; days?: number; hours?: number; minutes?: number }): KwcDate {
+    const result = {
+      year: this.year,
+      month: this.month + (diff.months ?? 0),
+      day: this.day + (diff.days ?? 0),
+      hours: this.hours + (diff.hours ?? 0),
+      minutes: this.minutes + (diff.minutes ?? 0),
+    };
+
+    return new KwcDate(new Date(result.year, result.month, result.day, result.hours, result.minutes));
+  }
+
+  substract(diff: { months?: number; days?: number; hours?: number; minutes?: number }): KwcDate {
+    const result = {
+      year: this.year,
+      month: this.month - (diff.months ?? 0),
+      day: this.day - (diff.days ?? 0),
+      hours: this.hours - (diff.hours ?? 0),
+      minutes: this.minutes - (diff.minutes ?? 0),
+    };
+
+    return new KwcDate(new Date(result.year, result.month, result.day, result.hours, result.minutes));
   }
 
   toDate() {
-    return new Date(this.year, this.month, this.day);
+    return new Date(this.year, this.month, this.day, this.hours, this.minutes);
   }
 }

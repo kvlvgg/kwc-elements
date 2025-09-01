@@ -12,7 +12,26 @@ export class KwcDateLocalization {
     return FIRST_DAY_OF_WEEK[this.locale];
   }
 
+  getMinutes(date: KwcDate) {
+    const formatter = new Intl.DateTimeFormat(this.locale, { timeStyle: 'short' });
+    return formatter.format(date.toDate()).split(':')[1];
+  }
+
+  getHours(date: KwcDate) {
+    const formatter = new Intl.DateTimeFormat(this.locale, { hour: '2-digit' });
+    return formatter.format(date.toDate());
+  }
+
   getDate(date: KwcDate) {
+    // const formatter = new Intl.DateTimeFormat(this.locale, {
+    //   year: 'numeric',
+    //   month: 'numeric',
+    //   day: 'numeric',
+    //   hour: 'numeric',
+    //   minute: 'numeric',
+    //   hour12: false,
+    // });
+
     const formatter = new Intl.DateTimeFormat(this.locale);
     return formatter.format(date.toDate());
   }

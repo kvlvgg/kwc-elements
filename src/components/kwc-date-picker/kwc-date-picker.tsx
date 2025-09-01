@@ -7,7 +7,9 @@ import { KwcCalendarCustomEvent, KwcCalendarValueChanged } from '../../component
 
 import { PARTS } from './constants';
 import { PARTS as INPUT_GROUP_PARTS } from '../kwc-input-group/constants';
+import { PARTS as POPUP_PARTS } from '../kwc-popup/constants';
 import { PARTS as CALENDAR_PARTS } from '../kwc-calendar/constants';
+import { PARTS as TIME_PARTS } from '../kwc-time/constants';
 
 import { PassTrough } from './types';
 
@@ -20,6 +22,7 @@ export class KwcDatePicker {
   @Element() el: HTMLElement;
 
   @Prop() value: Date | string | null = null;
+  @Prop() type: 'datetime' | 'date' | 'time' = 'date';
   @Prop() adjustPopupToInput: boolean = false;
 
   @Prop() pt: PassTrough;
@@ -102,9 +105,9 @@ export class KwcDatePicker {
           </span>
         </kwc-input-group>
 
-        <kwc-popup ref={el => (this.refs.popup = el)} {...this.pt.popup}>
+        <kwc-popup ref={el => (this.refs.popup = el)} exportparts={exportparts(POPUP_PARTS)} {...this.pt.popup}>
           <kwc-calendar
-            class="calendar"
+            class={{ calendar: true, hidden: !['datetime', 'date'].includes(this.type) }}
             exportparts={exportparts(CALENDAR_PARTS)}
             value={this.calendarValue}
             {...this.pt.calendar}
@@ -113,10 +116,33 @@ export class KwcDatePicker {
             <slot name="calendar-arrow-left" slot="arrow-left">
               🡠
             </slot>
+
             <slot name="calendar-arrow-right" slot="arrow-right">
               🡢
             </slot>
           </kwc-calendar>
+
+          <kwc-time exportparts={exportparts(TIME_PARTS)} class={{ time: true, hidden: !['datetime', 'time'].includes(this.type) }} value={this.calendarValue}>
+            <slot name="time-hours-arrow-up" slot="hour-arrow-up">
+              🡡
+            </slot>
+
+            <slot name="time-hours-arrow-down" slot="hour-arrow-down">
+              🡣
+            </slot>
+
+            <slot name="time-separator" slot="separator">
+              :
+            </slot>
+
+            <slot name="time-minutes-arrow-up" slot="minutes-arrow-up">
+              🡡
+            </slot>
+
+            <slot name="time-minutes-arrow-down" slot="minutes-arrow-down">
+              🡣
+            </slot>
+          </kwc-time>
         </kwc-popup>
       </Host>
     );

@@ -60,11 +60,11 @@ export class KwcCalendar {
   }
 
   setSelectedDate(kwcDate: KwcDate) {
-    this.selected = kwcDate;
+    this.selected = this.selected.setDate(kwcDate);
     this.valueChanged.emit({
       localization: this.localization,
-      kwcDate: kwcDate,
-      date: kwcDate.toDate(),
+      kwcDate: this.selected,
+      date: this.selected.toDate(),
     });
   }
 
@@ -93,14 +93,14 @@ export class KwcCalendar {
           <button
             part={parts({
               [PARTS.CALENDAR_DAY]: true,
-              [PARTS.CALENDAR_DAY__CURRENT]: x.isEqual(this.current),
-              [PARTS.CALENDAR_DAY__SELECTED]: x.isEqual(this.selected),
+              [PARTS.CALENDAR_DAY__CURRENT]: x.isEqualByDate(this.current),
+              [PARTS.CALENDAR_DAY__SELECTED]: x.isEqualByDate(this.selected),
               [PARTS.CALENDAR_DAY__OUT_OF_MONTH]: x.month !== this.viewState.month % 12,
             })}
             class={{
               'btn-day': true,
-              'selected': x.isEqual(this.selected),
-              'current': x.isEqual(this.current),
+              'selected': x.isEqualByDate(this.selected),
+              'current': x.isEqualByDate(this.current),
               'out-of-month': x.month !== this.viewState.month % 12,
             }}
             key={`${x.year}-${x.month}-${x.day}`}

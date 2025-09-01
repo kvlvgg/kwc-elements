@@ -1,0 +1,30 @@
+:host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+
+  border: 1px solid black;
+  border-top: none;
+  padding: 2px 0;
+
+  user-select: none;
+}
+
+.time-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.time-nav {
+  background-color: transparent;
+  padding: 0;
+  border: 1px solid transparent;
+  font-size: 0.9rem;
+}
+
+.time-nav:hover {
+  background-color: #bed6fe;
+  border: 1px solid black;
+}

@@ -63,7 +63,9 @@ export class KwcPopup {
   render() {
     return (
       <Host part={PARTS.POPUP} style={{ '--offset-y': `${this.offsetY}px` }} class={{ popup: !this.inline, hidden: !this.visible }}>
-        <slot></slot>
+        <div part={PARTS.POPUP_INNER_CONTAINER}>
+          <slot></slot>
+        </div>
       </Host>
     );
   }

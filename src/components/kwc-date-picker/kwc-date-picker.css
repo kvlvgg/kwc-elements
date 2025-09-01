@@ -30,3 +30,11 @@
 .calendar {
   width: 100%;
 }
+
+.calendar.hidden {
+  display: none;
+}
+
+.time.hidden {
+  display: none;
+}
