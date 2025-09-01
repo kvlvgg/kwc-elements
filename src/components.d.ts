@@ -6,7 +6,9 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { KwcCalendarValueChanged } from "./utils/date/events";
+import { PassTrough } from "./components/kwc-date-picker/types";
 export { KwcCalendarValueChanged } from "./utils/date/events";
+export { PassTrough } from "./components/kwc-date-picker/types";
 export namespace Components {
     interface KwcCalendar {
         "locale": string | null;
@@ -14,9 +16,7 @@ export namespace Components {
     }
     interface KwcDatePicker {
         "adjustPopupToInput": boolean;
-        "inline": boolean;
-        "locale": string | null;
-        "popupOffsetY": number;
+        "pt": PassTrough;
         "value": Date | string | null;
     }
     interface KwcInputGroup {
@@ -123,10 +123,8 @@ declare namespace LocalJSX {
     }
     interface KwcDatePicker {
         "adjustPopupToInput"?: boolean;
-        "inline"?: boolean;
-        "locale"?: string | null;
         "onValueChanged"?: (event: KwcDatePickerCustomEvent<Date>) => void;
-        "popupOffsetY"?: number;
+        "pt"?: PassTrough;
         "value"?: Date | string | null;
     }
     interface KwcInputGroup {

@@ -1,5 +1,6 @@
 import { Component, Host, h, State, Prop, Element, Watch, Event, EventEmitter } from '@stencil/core';
 import { toDate } from '../../utils/utils';
+import { merge } from '../../utils/merge';
 import { parts, exportparts } from '../../utils/parts';
 
 import { KwcCalendarCustomEvent, KwcCalendarValueChanged } from '../../components';
@@ -7,6 +8,8 @@ import { KwcCalendarCustomEvent, KwcCalendarValueChanged } from '../../component
 import { PARTS } from './constants';
 import { PARTS as INPUT_GROUP_PARTS } from '../kwc-input-group/constants';
 import { PARTS as CALENDAR_PARTS } from '../kwc-calendar/constants';
+
+import { PassTrough } from './types';
 
 @Component({
   tag: 'kwc-date-picker',
@@ -17,12 +20,9 @@ export class KwcDatePicker {
   @Element() el: HTMLElement;
 
   @Prop() value: Date | string | null = null;
-
-  // TODO: in calendar pass through options
-  @Prop() inline: boolean = false;
   @Prop() adjustPopupToInput: boolean = false;
-  @Prop() popupOffsetY: number = 0;
-  @Prop() locale: string | null = null;
+
+  @Prop() pt: PassTrough;
 
   @Event() valueChanged: EventEmitter<Date>;
 
@@ -38,6 +38,11 @@ export class KwcDatePicker {
   };
 
   componentWillLoad() {
+    this.pt = merge(this.pt, {
+      popup: { inline: false, offsetY: 0 },
+      calendar: { locale: null },
+    });
+
     this.onValueChanged(this.value);
   }
 
@@ -97,12 +102,12 @@ export class KwcDatePicker {
           </span>
         </kwc-input-group>
 
-        <kwc-popup ref={el => (this.refs.popup = el)} inline={this.inline} offsetY={this.popupOffsetY}>
+        <kwc-popup ref={el => (this.refs.popup = el)} {...this.pt.popup}>
           <kwc-calendar
             class="calendar"
             exportparts={exportparts(CALENDAR_PARTS)}
             value={this.calendarValue}
-            locale={this.locale}
+            {...this.pt.calendar}
             onValueChanged={e => this.onCalendarValueChanged(e)}
           >
             <slot name="calendar-arrow-left" slot="arrow-left">
