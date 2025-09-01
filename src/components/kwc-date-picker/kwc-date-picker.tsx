@@ -24,7 +24,7 @@ export class KwcDatePicker {
   @Prop() popupOffsetY: number = 0;
   @Prop() locale: string | null = null;
 
-  @Event({ eventName: 'value-changed' }) valueChanged: EventEmitter<Date>;
+  @Event() valueChanged: EventEmitter<Date>;
 
   @State() displayValue: string | null = null;
   @State() calendarValue: Date | string | null;
@@ -103,7 +103,7 @@ export class KwcDatePicker {
             exportparts={exportparts(CALENDAR_PARTS)}
             value={this.calendarValue}
             locale={this.locale}
-            onValue-changed={e => this.onCalendarValueChanged(e)}
+            onValueChanged={e => this.onCalendarValueChanged(e)}
           >
             <slot name="calendar-arrow-left" slot="arrow-left">
               🡠

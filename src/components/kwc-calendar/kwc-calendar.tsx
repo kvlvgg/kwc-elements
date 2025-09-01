@@ -25,7 +25,7 @@ export class KwcCalendar {
   @State() selected: KwcDate = KwcDate.now();
   @State() viewState: KwcDate = KwcDate.now();
 
-  @Event({ eventName: 'value-changed' }) valueChanged: EventEmitter<KwcCalendarValueChanged>;
+  @Event() valueChanged: EventEmitter<KwcCalendarValueChanged>;
 
   localization!: KwcDateLocalization;
 

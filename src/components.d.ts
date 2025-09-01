@@ -56,7 +56,7 @@ export interface KwcDatePickerCustomEvent<T> extends CustomEvent<T> {
 }
 declare global {
     interface HTMLKwcCalendarElementEventMap {
-        "value-changed": KwcCalendarValueChanged;
+        "valueChanged": KwcCalendarValueChanged;
     }
     interface HTMLKwcCalendarElement extends Components.KwcCalendar, HTMLStencilElement {
         addEventListener<K extends keyof HTMLKwcCalendarElementEventMap>(type: K, listener: (this: HTMLKwcCalendarElement, ev: KwcCalendarCustomEvent<HTMLKwcCalendarElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -73,7 +73,7 @@ declare global {
         new (): HTMLKwcCalendarElement;
     };
     interface HTMLKwcDatePickerElementEventMap {
-        "value-changed": Date;
+        "valueChanged": Date;
     }
     interface HTMLKwcDatePickerElement extends Components.KwcDatePicker, HTMLStencilElement {
         addEventListener<K extends keyof HTMLKwcDatePickerElementEventMap>(type: K, listener: (this: HTMLKwcDatePickerElement, ev: KwcDatePickerCustomEvent<HTMLKwcDatePickerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -118,14 +118,14 @@ declare global {
 declare namespace LocalJSX {
     interface KwcCalendar {
         "locale"?: string | null;
-        "onValue-changed"?: (event: KwcCalendarCustomEvent<KwcCalendarValueChanged>) => void;
+        "onValueChanged"?: (event: KwcCalendarCustomEvent<KwcCalendarValueChanged>) => void;
         "value"?: Date | string | null;
     }
     interface KwcDatePicker {
         "adjustPopupToInput"?: boolean;
         "inline"?: boolean;
         "locale"?: string | null;
-        "onValue-changed"?: (event: KwcDatePickerCustomEvent<Date>) => void;
+        "onValueChanged"?: (event: KwcDatePickerCustomEvent<Date>) => void;
         "popupOffsetY"?: number;
         "value"?: Date | string | null;
     }

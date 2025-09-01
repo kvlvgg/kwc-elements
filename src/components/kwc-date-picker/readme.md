@@ -18,9 +18,9 @@
 
 ## Events
 
-| Event           | Description | Type                |
-| --------------- | ----------- | ------------------- |
-| `value-changed` |             | `CustomEvent<Date>` |
+| Event          | Description | Type                |
+| -------------- | ----------- | ------------------- |
+| `valueChanged` |             | `CustomEvent<Date>` |
 
 
 ## Dependencies

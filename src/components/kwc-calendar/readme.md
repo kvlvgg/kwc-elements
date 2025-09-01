@@ -15,9 +15,9 @@
 
 ## Events
 
-| Event           | Description | Type                                                                                |
-| --------------- | ----------- | ----------------------------------------------------------------------------------- |
-| `value-changed` |             | `CustomEvent<{ localization: KwcDateLocalization; kwcDate: KwcDate; date: Date; }>` |
+| Event          | Description | Type                                                                                |
+| -------------- | ----------- | ----------------------------------------------------------------------------------- |
+| `valueChanged` |             | `CustomEvent<{ localization: KwcDateLocalization; kwcDate: KwcDate; date: Date; }>` |
 
 
 ## Dependencies
