@@ -32,7 +32,8 @@ export namespace Components {
         "close": () => Promise<void>;
         "isOpen": () => Promise<boolean>;
         "mode": 'static' | 'popup';
-        "open": (anchorEl: HTMLElement, offset: number) => Promise<void>;
+        "offsetY": number;
+        "open": (anchorEl: HTMLElement) => Promise<void>;
         "registerCloseOutside": (closeOutsideEl: HTMLElement) => Promise<void>;
     }
     interface MyComponent {
@@ -149,6 +150,7 @@ declare namespace LocalJSX {
     }
     interface KwcPopup {
         "mode"?: 'static' | 'popup';
+        "offsetY"?: number;
     }
     interface MyComponent {
         /**

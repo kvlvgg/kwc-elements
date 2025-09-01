@@ -65,7 +65,7 @@ export class KwcDatePicker {
 
       if (this.adjustPopupToInput) this.refs.popup.adjustWidth(this.refs.inputWrapper);
       this.refs.popup.registerCloseOutside(this.el);
-      this.refs.popup.open(this.refs.inputWrapper, this.popupOffsetY);
+      this.refs.popup.open(this.refs.inputWrapper);
 
       return;
     });
@@ -96,7 +96,7 @@ export class KwcDatePicker {
           </span>
         </kwc-input-group>
 
-        <kwc-popup ref={el => (this.refs.popup = el)} mode={this.mode}>
+        <kwc-popup ref={el => (this.refs.popup = el)} mode={this.mode} offsetY={this.popupOffsetY}>
           <kwc-calendar
             class="calendar"
             exportparts={exportparts(CALENDAR_PARTS)}

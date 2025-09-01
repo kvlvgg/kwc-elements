@@ -11,3 +11,7 @@
 :host(.popup.hidden) {
   display: none;
 }
+
+:host(:not(.popup)) {
+  margin-top: var(--offset-y);
+}

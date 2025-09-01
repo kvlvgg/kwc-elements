@@ -12,6 +12,7 @@ export class KwcPopup {
   @Element() el: HTMLElement;
 
   @Prop() mode: 'static' | 'popup' = 'popup';
+  @Prop() offsetY: number = 0;
 
   @State() visible: boolean = false;
 
@@ -23,10 +24,10 @@ export class KwcPopup {
   }
 
   @Method()
-  async open(anchorEl: HTMLElement, offset: number) {
+  async open(anchorEl: HTMLElement) {
     this.visible = true;
     await new Promise(r => requestAnimationFrame(r));
-    DOM.placeElement(this.el, anchorEl, offset);
+    DOM.placeElement(this.el, anchorEl, this.offsetY);
   }
 
   @Method()
@@ -61,7 +62,7 @@ export class KwcPopup {
 
   render() {
     return (
-      <Host part={PARTS.POPUP} class={{ popup: this.mode === 'popup', hidden: !this.visible }}>
+      <Host part={PARTS.POPUP} style={{ '--offset-y': `${this.offsetY}px` }} class={{ popup: this.mode === 'popup', hidden: !this.visible }}>
         <slot></slot>
       </Host>
     );

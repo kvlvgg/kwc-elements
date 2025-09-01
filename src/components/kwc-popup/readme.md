@@ -7,9 +7,10 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type                  | Default   |
-| -------- | --------- | ----------- | --------------------- | --------- |
-| `mode`   | `mode`    |             | `"popup" \| "static"` | `'popup'` |
+| Property  | Attribute  | Description | Type                  | Default   |
+| --------- | ---------- | ----------- | --------------------- | --------- |
+| `mode`    | `mode`     |             | `"popup" \| "static"` | `'popup'` |
+| `offsetY` | `offset-y` |             | `number`              | `0`       |
 
 
 ## Methods
@@ -50,7 +51,7 @@ Type: `Promise<boolean>`
 
 
 
-### `open(anchorEl: HTMLElement, offset: number) => Promise<void>`
+### `open(anchorEl: HTMLElement) => Promise<void>`
 
 
 
@@ -59,7 +60,6 @@ Type: `Promise<boolean>`
 | Name       | Type          | Description |
 | ---------- | ------------- | ----------- |
 | `anchorEl` | `HTMLElement` |             |
-| `offset`   | `number`      |             |
 
 #### Returns
 
