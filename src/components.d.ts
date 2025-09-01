@@ -5,10 +5,8 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { KwcDateLocalization } from "./utils/date/kwc-date-localization";
-import { KwcDate } from "./utils/date/kwc-date";
-export { KwcDateLocalization } from "./utils/date/kwc-date-localization";
-export { KwcDate } from "./utils/date/kwc-date";
+import { KwcCalendarValueChanged } from "./utils/date/events";
+export { KwcCalendarValueChanged } from "./utils/date/events";
 export namespace Components {
     interface KwcCalendar {
         "locale": string | null;
@@ -58,11 +56,7 @@ export interface KwcDatePickerCustomEvent<T> extends CustomEvent<T> {
 }
 declare global {
     interface HTMLKwcCalendarElementEventMap {
-        "value-changed": {
-    localization: KwcDateLocalization;
-    kwcDate: KwcDate;
-    date: Date;
-  };
+        "value-changed": KwcCalendarValueChanged;
     }
     interface HTMLKwcCalendarElement extends Components.KwcCalendar, HTMLStencilElement {
         addEventListener<K extends keyof HTMLKwcCalendarElementEventMap>(type: K, listener: (this: HTMLKwcCalendarElement, ev: KwcCalendarCustomEvent<HTMLKwcCalendarElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -124,11 +118,7 @@ declare global {
 declare namespace LocalJSX {
     interface KwcCalendar {
         "locale"?: string | null;
-        "onValue-changed"?: (event: KwcCalendarCustomEvent<{
-    localization: KwcDateLocalization;
-    kwcDate: KwcDate;
-    date: Date;
-  }>) => void;
+        "onValue-changed"?: (event: KwcCalendarCustomEvent<KwcCalendarValueChanged>) => void;
         "value"?: Date | string | null;
     }
     interface KwcDatePicker {

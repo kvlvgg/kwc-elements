@@ -2,8 +2,7 @@ import { Component, Host, h, State, Prop, Element, Watch, Event, EventEmitter } 
 import { toDate } from '../../utils/utils';
 import { parts, exportparts } from '../../utils/parts';
 
-import { KwcDate } from '../../utils/date/kwc-date';
-import { KwcCalendarCustomEvent, KwcDateLocalization } from '../../components';
+import { KwcCalendarCustomEvent, KwcCalendarValueChanged } from '../../components';
 
 import { PARTS } from './constants';
 import { PARTS as INPUT_GROUP_PARTS } from '../kwc-input-group/constants';
@@ -78,7 +77,7 @@ export class KwcDatePicker {
     this.calendarValue = null;
   }
 
-  onCalendarValueChanged(e: KwcCalendarCustomEvent<{ localization: KwcDateLocalization; kwcDate: KwcDate; date: Date }>) {
+  onCalendarValueChanged(e: KwcCalendarCustomEvent<KwcCalendarValueChanged>) {
     this.displayValue = e.detail.localization.getDate(e.detail.kwcDate);
     this.calendarValue = e.detail.date;
   }

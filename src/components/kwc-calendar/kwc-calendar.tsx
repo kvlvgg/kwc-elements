@@ -6,6 +6,8 @@ import { KwcDate } from '../../utils/date/kwc-date';
 import { KwcViewBuilder } from '../../utils/date/kwc-view-builder';
 import { KwcDateLocalization } from '../../utils/date/kwc-date-localization';
 
+import type { KwcCalendarValueChanged } from '../../utils/date/events';
+
 import { PARTS } from './constants';
 
 @Component({
@@ -23,11 +25,7 @@ export class KwcCalendar {
   @State() selected: KwcDate = KwcDate.now();
   @State() viewState: KwcDate = KwcDate.now();
 
-  @Event({ eventName: 'value-changed' }) valueChanged: EventEmitter<{
-    localization: KwcDateLocalization;
-    kwcDate: KwcDate;
-    date: Date;
-  }>;
+  @Event({ eventName: 'value-changed' }) valueChanged: EventEmitter<KwcCalendarValueChanged>;
 
   localization!: KwcDateLocalization;
 
