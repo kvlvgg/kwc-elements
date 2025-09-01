@@ -47,11 +47,7 @@ export class KwcCalendar {
 
   @Watch('value')
   onValueChanged(value: Date | string | null) {
-    value = toDate(value);
-    if (!value) {
-      // logic for null value
-      return;
-    }
+    value = toDate(value ?? this.current.toDate());
 
     this.selected = new KwcDate(value);
     this.viewState = new KwcDate(value);

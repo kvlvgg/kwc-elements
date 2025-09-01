@@ -75,12 +75,12 @@ export class KwcDatePicker {
 
   clear() {
     this.displayValue = null;
-    // TODO: some logic for calendar (selected, viewState)
+    this.calendarValue = null;
   }
 
-  onCalendarValueChanged(e: KwcCalendarCustomEvent<{ localization: KwcDateLocalization; kwcDate: KwcDate }>) {
-    // this.setSelectedDate(e.detail.kwcDate);
+  onCalendarValueChanged(e: KwcCalendarCustomEvent<{ localization: KwcDateLocalization; kwcDate: KwcDate; date: Date }>) {
     this.displayValue = e.detail.localization.getDate(e.detail.kwcDate);
+    this.calendarValue = e.detail.date;
   }
 
   render() {
