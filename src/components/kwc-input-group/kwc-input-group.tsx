@@ -15,7 +15,7 @@ export class KwcInputGroup {
       <Host part={PARTS.INPUT_WRAPPER}>
         <input part={PARTS.INPUT} class="input" value={this.value} />
 
-        <div part={PARTS.ICONS_WRAPPER} class="icons-wrapper">
+        <div part={PARTS.ICONS_WRAPPER}>
           <slot name="icons"></slot>
         </div>
       </Host>

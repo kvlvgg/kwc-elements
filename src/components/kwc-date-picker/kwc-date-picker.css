@@ -3,13 +3,28 @@
   position: relative;
 }
 
-.calendar-icon {
+.icons {
   display: flex;
   justify-content: center;
   align-items: center;
 
-  margin-bottom: 1px;
+  gap: 4px;
+}
+
+.icons .icon {
+  display: inline-flex;
+  align-items: center;
   user-select: none;
+  cursor: pointer;
+}
+
+.icons .icon.icon-clear {
+  font-size: 0.6rem;
+  font-weight: 700;
+}
+
+.icons .icon.icon-toggle {
+  font-size: 0.7rem;
 }
 
 .calendar {

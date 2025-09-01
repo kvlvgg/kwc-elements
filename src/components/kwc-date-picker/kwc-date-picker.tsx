@@ -1,10 +1,11 @@
 import { Component, Host, h, State, Prop, Element, Watch, Event, EventEmitter } from '@stencil/core';
 import { toDate } from '../../utils/utils';
-import { exportparts } from '../../utils/parts';
+import { parts, exportparts } from '../../utils/parts';
 
 import { KwcDate } from '../../utils/date/kwc-date';
 import { KwcCalendarCustomEvent, KwcDateLocalization } from '../../components';
 
+import { PARTS } from './constants';
 import { PARTS as INPUT_GROUP_PARTS } from '../kwc-input-group/constants';
 import { PARTS as CALENDAR_PARTS } from '../kwc-calendar/constants';
 
@@ -70,6 +71,11 @@ export class KwcDatePicker {
     });
   }
 
+  clear() {
+    this.displayValue = null;
+    // TODO: some logic for calendar (selected, viewState)
+  }
+
   onCalendarValueChanged(e: KwcCalendarCustomEvent<{ localization: KwcDateLocalization; kwcDate: KwcDate }>) {
     // this.setSelectedDate(e.detail.kwcDate);
     this.displayValue = e.detail.localization.getDate(e.detail.kwcDate);
@@ -79,13 +85,13 @@ export class KwcDatePicker {
     return (
       <Host>
         <kwc-input-group ref={el => (this.refs.inputWrapper = el)} value={this.displayValue} exportparts={exportparts(INPUT_GROUP_PARTS)}>
-          <span slot="icons" class="calendar-icon" tabIndex={0} onClick={() => this.togglePopup()}>
-            <span>
-              <slot name="calendar-icon-cccrossss">╳</slot>
+          <span part={PARTS.DATE_PICKER_ICONS} slot="icons" class="icons">
+            <span part={parts([PARTS.DATE_PICKER_ICON, PARTS.DATE_PICKER_ICON_CLEAR])} class="icon icon-clear" tabIndex={0} onClick={() => this.clear()}>
+              <slot name="icon-clear">╳</slot>
             </span>
 
-            <span>
-              <slot name="calendar-icon">📅</slot>
+            <span part={parts([PARTS.DATE_PICKER_ICON, PARTS.DATE_PICKER_ICON_TOGGLE])} class="icon icon-toggle" tabIndex={0} onClick={() => this.togglePopup()}>
+              <slot name="icon-toggle">📅</slot>
             </span>
           </span>
         </kwc-input-group>
