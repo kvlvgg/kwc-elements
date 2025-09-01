@@ -7,13 +7,10 @@
 
 ## Properties
 
-| Property             | Attribute               | Description | Type                  | Default    |
-| -------------------- | ----------------------- | ----------- | --------------------- | ---------- |
-| `adjustPopupToInput` | `adjust-popup-to-input` |             | `boolean`             | `false`    |
-| `locale`             | `locale`                |             | `string`              | `null`     |
-| `mode`               | `mode`                  |             | `"popup" \| "static"` | `'static'` |
-| `popupOffset`        | `popup-offset`          |             | `number`              | `0`        |
-| `value`              | `value`                 |             | `Date \| string`      | `null`     |
+| Property | Attribute | Description | Type             | Default |
+| -------- | --------- | ----------- | ---------------- | ------- |
+| `locale` | `locale`  |             | `string`         | `null`  |
+| `value`  | `value`   |             | `Date \| string` | `null`  |
 
 
 ## Events

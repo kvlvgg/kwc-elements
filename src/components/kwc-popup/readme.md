@@ -7,10 +7,10 @@
 
 ## Properties
 
-| Property  | Attribute  | Description | Type                  | Default   |
-| --------- | ---------- | ----------- | --------------------- | --------- |
-| `mode`    | `mode`     |             | `"popup" \| "static"` | `'popup'` |
-| `offsetY` | `offset-y` |             | `number`              | `0`       |
+| Property  | Attribute  | Description | Type      | Default |
+| --------- | ---------- | ----------- | --------- | ------- |
+| `inline`  | `inline`   |             | `boolean` | `false` |
+| `offsetY` | `offset-y` |             | `number`  | `0`     |
 
 
 ## Methods

@@ -11,16 +11,13 @@ export { KwcDateLocalization } from "./utils/date/kwc-date-localization";
 export { KwcDate } from "./utils/date/kwc-date";
 export namespace Components {
     interface KwcCalendar {
-        "adjustPopupToInput": boolean;
         "locale": string | null;
-        "mode": 'static' | 'popup';
-        "popupOffset": number;
         "value": Date | string | null;
     }
     interface KwcDatePicker {
         "adjustPopupToInput": boolean;
+        "inline": boolean;
         "locale": string | null;
-        "mode": 'static' | 'popup';
         "popupOffsetY": number;
         "value": Date | string | null;
     }
@@ -30,8 +27,8 @@ export namespace Components {
     interface KwcPopup {
         "adjustWidth": (adjustWidthEl: HTMLElement) => Promise<void>;
         "close": () => Promise<void>;
+        "inline": boolean;
         "isOpen": () => Promise<boolean>;
-        "mode": 'static' | 'popup';
         "offsetY": number;
         "open": (anchorEl: HTMLElement) => Promise<void>;
         "registerCloseOutside": (closeOutsideEl: HTMLElement) => Promise<void>;
@@ -126,21 +123,18 @@ declare global {
 }
 declare namespace LocalJSX {
     interface KwcCalendar {
-        "adjustPopupToInput"?: boolean;
         "locale"?: string | null;
-        "mode"?: 'static' | 'popup';
         "onValue-changed"?: (event: KwcCalendarCustomEvent<{
     localization: KwcDateLocalization;
     kwcDate: KwcDate;
     date: Date;
   }>) => void;
-        "popupOffset"?: number;
         "value"?: Date | string | null;
     }
     interface KwcDatePicker {
         "adjustPopupToInput"?: boolean;
+        "inline"?: boolean;
         "locale"?: string | null;
-        "mode"?: 'static' | 'popup';
         "onValue-changed"?: (event: KwcDatePickerCustomEvent<Date>) => void;
         "popupOffsetY"?: number;
         "value"?: Date | string | null;
@@ -149,7 +143,7 @@ declare namespace LocalJSX {
         "value"?: string;
     }
     interface KwcPopup {
-        "mode"?: 'static' | 'popup';
+        "inline"?: boolean;
         "offsetY"?: number;
     }
     interface MyComponent {

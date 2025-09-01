@@ -17,9 +17,6 @@ export class KwcCalendar {
   @Element() el: HTMLElement;
 
   @Prop() value: Date | string | null = null;
-  @Prop() mode: 'static' | 'popup' = 'static';
-  @Prop() adjustPopupToInput: boolean = false;
-  @Prop() popupOffset: number = 0;
   @Prop() locale: string | null = null;
 
   @State() current: KwcDate = KwcDate.now();

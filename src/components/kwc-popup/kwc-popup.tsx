@@ -11,7 +11,7 @@ import { PARTS } from './constants';
 export class KwcPopup {
   @Element() el: HTMLElement;
 
-  @Prop() mode: 'static' | 'popup' = 'popup';
+  @Prop() inline: boolean = false;
   @Prop() offsetY: number = 0;
 
   @State() visible: boolean = false;
@@ -62,7 +62,7 @@ export class KwcPopup {
 
   render() {
     return (
-      <Host part={PARTS.POPUP} style={{ '--offset-y': `${this.offsetY}px` }} class={{ popup: this.mode === 'popup', hidden: !this.visible }}>
+      <Host part={PARTS.POPUP} style={{ '--offset-y': `${this.offsetY}px` }} class={{ popup: !this.inline, hidden: !this.visible }}>
         <slot></slot>
       </Host>
     );

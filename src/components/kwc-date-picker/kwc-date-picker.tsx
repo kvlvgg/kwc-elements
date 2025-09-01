@@ -18,7 +18,9 @@ export class KwcDatePicker {
   @Element() el: HTMLElement;
 
   @Prop() value: Date | string | null = null;
-  @Prop() mode: 'static' | 'popup' = 'static';
+
+  // TODO: in calendar pass through options
+  @Prop() inline: boolean = false;
   @Prop() adjustPopupToInput: boolean = false;
   @Prop() popupOffsetY: number = 0;
   @Prop() locale: string | null = null;
@@ -96,7 +98,7 @@ export class KwcDatePicker {
           </span>
         </kwc-input-group>
 
-        <kwc-popup ref={el => (this.refs.popup = el)} mode={this.mode} offsetY={this.popupOffsetY}>
+        <kwc-popup ref={el => (this.refs.popup = el)} inline={this.inline} offsetY={this.popupOffsetY}>
           <kwc-calendar
             class="calendar"
             exportparts={exportparts(CALENDAR_PARTS)}
