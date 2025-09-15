@@ -13,6 +13,20 @@ export class KwcViewBuilder {
     return new KwcViewBuilder(localization);
   }
 
+  forDecade(date: KwcDate) {
+    const start = date.substract({ years: date.year % 10 });
+    this.view = Array.from({ length: 10 }, (_, i) => start.add({ years: i }));
+
+    return this;
+  }
+
+  forYear(date: KwcDate) {
+    const start = date.substract({ months: date.month });
+    this.view = Array.from({ length: 12 }, (_, i) => start.add({ months: i }));
+
+    return this;
+  }
+
   forMonth(date: KwcDate) {
     const firstDayOfMonth = date.firstDayOfMonth;
     const daysInMonth = date.daysInMonth;

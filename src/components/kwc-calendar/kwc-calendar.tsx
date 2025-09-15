@@ -3,12 +3,14 @@ import { toDate } from '../../utils/utils';
 import { parts } from '../../utils/parts';
 
 import { KwcDate } from '../../utils/date/kwc-date';
-import { KwcViewBuilder } from '../../utils/date/kwc-view-builder';
 import { KwcDateLocalization } from '../../utils/date/kwc-date-localization';
 
 import type { KwcCalendarValueChanged } from '../../utils/date/events';
 
 import { PARTS } from './constants';
+
+import type { ViewMode } from './types';
+import { views } from './views';
 
 @Component({
   tag: 'kwc-calendar',
@@ -29,10 +31,6 @@ export class KwcCalendar {
 
   localization!: KwcDateLocalization;
 
-  get view(): KwcDate[] {
-    return KwcViewBuilder.create(this.localization).forMonth(this.viewState).padLeft().padRight().extend({ weeks: 6 }).done();
-  }
-
   componentWillLoad() {
     this.localization = new KwcDateLocalization(this.locale);
     this.onValueChanged(this.value);
@@ -51,12 +49,22 @@ export class KwcCalendar {
     this.viewState = new KwcDate(value);
   }
 
-  moveToPrevMonth() {
-    this.viewState = this.viewState.substract({ months: 1 });
+  get viewDiff() {
+    const diff = { years: 0, months: 0 };
+
+    if (this.view === 'month') diff.months = 1;
+    if (this.view === 'year') diff.years = 1;
+    if (this.view === 'decade') diff.years = 10;
+
+    return diff;
   }
 
-  moveToNextMonth() {
-    this.viewState = this.viewState.add({ months: 1 });
+  moveToPrev() {
+    this.viewState = this.viewState.substract(this.viewDiff);
+  }
+
+  moveToNext() {
+    this.viewState = this.viewState.add(this.viewDiff);
   }
 
   setSelectedDate(kwcDate: KwcDate) {
@@ -68,47 +76,40 @@ export class KwcCalendar {
     });
   }
 
+  @State() view: ViewMode = 'month';
+
+  switchView(view: ViewMode, kwcDate?: KwcDate) {
+    this.view = view;
+    if (kwcDate) this.viewState.setDate(kwcDate);
+  }
+
   render() {
     return (
       <Host part={PARTS.CALENDAR}>
         <div part={PARTS.CALENDAR_HEADER} class="header">
-          <button part={parts([PARTS.CALENDAR_NAV, PARTS.CALENDAR_NAV__PREV])} class="arrow" onClick={() => this.moveToPrevMonth()}>
+          <button part={parts([PARTS.CALENDAR_NAV, PARTS.CALENDAR_NAV_ARROW, PARTS.CALENDAR_NAV_ARROW__PREV])} class="nav-arrow" onClick={() => this.moveToPrev()}>
             <slot name="arrow-left">🡠</slot>
           </button>
 
-          <span part={PARTS.CALENDAR_MONTH_LABEL}>{this.localization.getMonth(this.viewState)}</span>
+          {views.header[this.view]({
+            localization: this.localization,
+            viewState: this.viewState,
+            onSwitchView: view => this.switchView(view),
+          })}
 
-          <button part={parts([PARTS.CALENDAR_NAV, PARTS.CALENDAR_NAV__NEXT])} class="arrow" onClick={() => this.moveToNextMonth()}>
+          <button part={parts([PARTS.CALENDAR_NAV, PARTS.CALENDAR_NAV_ARROW, PARTS.CALENDAR_NAV_ARROW__NEXT])} class="nav-arrow" onClick={() => this.moveToNext()}>
             <slot name="arrow-right">🡢</slot>
           </button>
         </div>
 
-        {this.localization.getWeekdays().map(x => (
-          <span part={PARTS.CALENDAR_WEEK_DAY} class="weekday" key={x}>
-            {x}
-          </span>
-        ))}
-
-        {this.view.map(x => (
-          <button
-            part={parts({
-              [PARTS.CALENDAR_DAY]: true,
-              [PARTS.CALENDAR_DAY__CURRENT]: x.isEqualByDate(this.current),
-              [PARTS.CALENDAR_DAY__SELECTED]: x.isEqualByDate(this.selected),
-              [PARTS.CALENDAR_DAY__OUT_OF_MONTH]: x.month !== this.viewState.month % 12,
-            })}
-            class={{
-              'btn-day': true,
-              'selected': x.isEqualByDate(this.selected),
-              'current': x.isEqualByDate(this.current),
-              'out-of-month': x.month !== this.viewState.month % 12,
-            }}
-            key={`${x.year}-${x.month}-${x.day}`}
-            onClick={() => this.setSelectedDate(x)}
-          >
-            {this.localization.getDay(x)}
-          </button>
-        ))}
+        {views.body[this.view]({
+          localization: this.localization,
+          current: this.current,
+          selected: this.selected,
+          viewState: this.viewState,
+          onDateSelected: (kwcDate: KwcDate) => this.setSelectedDate(kwcDate),
+          onSwitchView: (view, kwcDate) => this.switchView(view, kwcDate),
+        })}
       </Host>
     );
   }

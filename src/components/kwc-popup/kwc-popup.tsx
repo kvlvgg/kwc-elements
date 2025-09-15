@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, Element, Method, State } from '@stencil/core';
+import { Component, Host, h, Prop, Element, Method, State, Event, EventEmitter } from '@stencil/core';
 import { DOM } from '../../utils/DOM';
 
 import { PARTS } from './constants';
@@ -10,6 +10,9 @@ import { PARTS } from './constants';
 })
 export class KwcPopup {
   @Element() el: HTMLElement;
+
+  @Event() closed: EventEmitter;
+  @Event() opened: EventEmitter;
 
   @Prop() inline: boolean = false;
   @Prop() offsetY: number = 0;
@@ -28,11 +31,13 @@ export class KwcPopup {
     this.visible = true;
     await new Promise(r => requestAnimationFrame(r));
     DOM.placeElement(this.el, anchorEl, this.offsetY);
+    this.opened.emit();
   }
 
   @Method()
   async close() {
     this.visible = false;
+    this.closed.emit();
     this.removeClickOutsideEvent();
   }
 

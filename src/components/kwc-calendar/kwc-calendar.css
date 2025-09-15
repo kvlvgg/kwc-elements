@@ -6,27 +6,31 @@
   box-sizing: border-box;
   position: relative;
 
+  display: flex;
+  flex-direction: column;
+
+  /* display: inline-grid;
+  grid-template-columns: repeat(7, 1fr);
+  justify-items: center; */
+
   background-color: white;
   padding: 0.5rem;
   border: 1px solid black;
-
-  display: inline-grid;
-  grid-template-columns: repeat(7, 1fr);
-  justify-items: center;
 
   user-select: none;
 }
 
 .header {
-  grid-column: 1/-1;
+  /* grid-column: 1/-1; */
 
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 4px;
 }
 
-.header .arrow {
+.header .nav-arrow {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -37,9 +41,52 @@
   font-size: 1.4rem;
 }
 
-.header .arrow:hover {
+.header .nav-arrow:hover {
   background-color: #bed6fe;
   border: 1px solid black;
+}
+
+.nav-ym-wrapper {
+  flex: 1 0 auto;
+
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+}
+
+.header .nav-month,
+.header .nav-year {
+  background-color: transparent;
+  border: 1px solid transparent;
+}
+
+.header .nav-month:hover,
+.header .nav-year:hover {
+  background-color: #bed6fe;
+  border: 1px solid black;
+}
+
+.header .nav-decade {
+  font-size: 0.85rem;
+  padding: 0 16px;
+}
+
+.month-view {
+  display: inline-grid;
+  grid-template-columns: repeat(7, 1fr);
+  justify-items: center;
+}
+
+.year-view {
+  display: inline-grid;
+  grid-template-columns: repeat(3, 1fr);
+  justify-items: center;
+}
+
+.decade-view {
+  display: inline-grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: center;
 }
 
 .weekday {
@@ -56,18 +103,31 @@
   padding: 0;
 }
 
-.btn-day:hover {
+.btn-month,
+.btn-year {
+  padding: 0.2rem;
+  border: 1px solid transparent;
+  background-color: transparent;
+}
+
+.btn-day:hover,
+.btn-month:hover,
+.btn-year:hover {
   background-color: #bed6fe;
   border: 1px solid black;
 }
 
-.btn-day.selected {
+.btn-day.selected,
+.btn-month.selected,
+.btn-year.selected {
   background-color: #2876fc;
   color: #ffffff;
   border: 2px solid black;
 }
 
-.btn-day.current:not(.selected) {
+.btn-day.current:not(.selected),
+.btn-month.current:not(.selected),
+.btn-year.current:not(.selected) {
   border: 1px solid black;
 }
 

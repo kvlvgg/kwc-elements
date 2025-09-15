@@ -59,6 +59,10 @@ export interface KwcDatePickerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLKwcDatePickerElement;
 }
+export interface KwcPopupCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLKwcPopupElement;
+}
 export interface KwcTimeCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLKwcTimeElement;
@@ -104,7 +108,19 @@ declare global {
         prototype: HTMLKwcInputGroupElement;
         new (): HTMLKwcInputGroupElement;
     };
+    interface HTMLKwcPopupElementEventMap {
+        "closed": any;
+        "opened": any;
+    }
     interface HTMLKwcPopupElement extends Components.KwcPopup, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLKwcPopupElementEventMap>(type: K, listener: (this: HTMLKwcPopupElement, ev: KwcPopupCustomEvent<HTMLKwcPopupElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLKwcPopupElementEventMap>(type: K, listener: (this: HTMLKwcPopupElement, ev: KwcPopupCustomEvent<HTMLKwcPopupElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLKwcPopupElement: {
         prototype: HTMLKwcPopupElement;
@@ -161,6 +177,8 @@ declare namespace LocalJSX {
     interface KwcPopup {
         "inline"?: boolean;
         "offsetY"?: number;
+        "onClosed"?: (event: KwcPopupCustomEvent<any>) => void;
+        "onOpened"?: (event: KwcPopupCustomEvent<any>) => void;
     }
     interface KwcTime {
         "locale"?: string | null;

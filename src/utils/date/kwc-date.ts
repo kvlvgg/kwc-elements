@@ -31,6 +31,14 @@ export class KwcDate {
     return this.year === date.year && this.month === date.month && this.day === date.day && this.dayOfWeek === date.dayOfWeek;
   }
 
+  isEqualByMonth(date: KwcDate) {
+    return this.year === date.year && this.month === date.month;
+  }
+
+  isEqualByYear(date: KwcDate) {
+    return this.year === date.year;
+  }
+
   setDate(date: KwcDate) {
     this.year = date.year;
     this.month = date.month;
@@ -39,28 +47,28 @@ export class KwcDate {
     return this;
   }
 
-  add(diff: { months?: number; days?: number; hours?: number; minutes?: number }): KwcDate {
+  add(diff: { years?: number; months?: number; days?: number; hours?: number; minutes?: number }): KwcDate {
     const result = {
-      year: this.year,
+      years: this.year + (diff.years ?? 0),
       month: this.month + (diff.months ?? 0),
       day: this.day + (diff.days ?? 0),
       hours: this.hours + (diff.hours ?? 0),
       minutes: this.minutes + (diff.minutes ?? 0),
     };
 
-    return new KwcDate(new Date(result.year, result.month, result.day, result.hours, result.minutes));
+    return new KwcDate(new Date(result.years, result.month, result.day, result.hours, result.minutes));
   }
 
-  substract(diff: { months?: number; days?: number; hours?: number; minutes?: number }): KwcDate {
+  substract(diff: { years?: number; months?: number; days?: number; hours?: number; minutes?: number }): KwcDate {
     const result = {
-      year: this.year,
+      years: this.year - (diff.years ?? 0),
       month: this.month - (diff.months ?? 0),
       day: this.day - (diff.days ?? 0),
       hours: this.hours - (diff.hours ?? 0),
       minutes: this.minutes - (diff.minutes ?? 0),
     };
 
-    return new KwcDate(new Date(result.year, result.month, result.day, result.hours, result.minutes));
+    return new KwcDate(new Date(result.years, result.month, result.day, result.hours, result.minutes));
   }
 
   toDate() {

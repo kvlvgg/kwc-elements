@@ -58,8 +58,30 @@ export class KwcDateLocalization {
   }
 
   getMonth(date: KwcDate) {
-    const formatter = new Intl.DateTimeFormat(this.locale, { month: 'long', year: 'numeric' });
+    const formatter = new Intl.DateTimeFormat(this.locale, { month: 'long' });
 
     return formatter.format(date.toDate());
+  }
+
+  getShortMonth(date: KwcDate) {
+    const formatter = new Intl.DateTimeFormat(this.locale, { month: 'short' });
+
+    return formatter.format(date.toDate());
+  }
+
+  getYear(date: KwcDate) {
+    const formatter = new Intl.DateTimeFormat(this.locale, { year: 'numeric' });
+
+    return formatter.format(date.toDate());
+  }
+
+  getDecade(date: KwcDate) {
+    const formatter = new Intl.DateTimeFormat(this.locale, { year: 'numeric' });
+
+    // TODO: вынести в KwcDate
+    const start = date.substract({ years: date.year % 10 });
+    const end = start.add({ years: 9 });
+
+    return `${formatter.format(start.toDate())}-${formatter.format(end.toDate())}`;
   }
 }
