@@ -8,3 +8,10 @@ export function toDate(value: Date | string | null): Date | null {
 
   return null;
 }
+
+export function capitalize(value: string) {
+  if (value.length === 0) return value;
+
+  const [first, ...rest] = value;
+  return `${first.toUpperCase()}${rest.join('')}`;
+}

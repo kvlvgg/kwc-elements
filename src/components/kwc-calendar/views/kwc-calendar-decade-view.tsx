@@ -26,7 +26,7 @@ export const KwcCalendarDecadeViewBody = (props: {
   onSwitchView: (view: ViewMode, kwcDate: KwcDate) => void;
 }) => {
   return (
-    <div part={PARTS.CALENDAR_DECADE_VIEW} class="decade-view">
+    <div part={parts(PARTS.CALENDAR_DECADE_VIEW)} class="decade-view">
       {KwcViewBuilder.create(props.localization)
         .forDecade(props.viewState)
         .done()

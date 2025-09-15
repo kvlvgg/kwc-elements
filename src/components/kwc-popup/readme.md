@@ -13,6 +13,14 @@
 | `offsetY` | `offset-y` |             | `number`  | `0`     |
 
 
+## Events
+
+| Event    | Description | Type               |
+| -------- | ----------- | ------------------ |
+| `closed` |             | `CustomEvent<any>` |
+| `opened` |             | `CustomEvent<any>` |
+
+
 ## Methods
 
 ### `adjustWidth(adjustWidthEl: HTMLElement) => Promise<void>`

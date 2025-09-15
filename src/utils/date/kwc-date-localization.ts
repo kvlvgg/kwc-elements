@@ -1,3 +1,5 @@
+import { capitalize } from '../utils';
+
 import { FIRST_DAY_OF_WEEK } from './constants';
 import { KwcDate } from './kwc-date';
 
@@ -60,7 +62,7 @@ export class KwcDateLocalization {
   getMonth(date: KwcDate) {
     const formatter = new Intl.DateTimeFormat(this.locale, { month: 'long' });
 
-    return formatter.format(date.toDate());
+    return capitalize(formatter.format(date.toDate()));
   }
 
   getShortMonth(date: KwcDate) {
