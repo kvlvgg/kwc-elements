@@ -1,0 +1,49 @@
+{
+  "name": "@kwc-elements/date-picker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.js",
+  "types": "dist/types/index.d.ts",
+  "collection": "dist/collection/collection-manifest.json",
+  "collection:main": "dist/collection/index.js",
+  "unpkg": "dist/kwc-elements/date-picker.esm.js",
+  "exports": {
+    "./unused-default-stencil-entry": {
+      "import": "./dist/kwc-date-picker/kwc-date-picker.esm.js",
+      "require": "./dist/kwc-date-picker/kwc-date-picker.cjs.js"
+    },
+    ".": {
+      "import": "./dist/components/kwc-date-picker.js",
+      "types": "./dist/components/kwc-date-picker.d.ts"
+    },
+    "./loader": {
+      "import": "./loader/index.js",
+      "require": "./loader/index.cjs",
+      "types": "./loader/index.d.ts"
+    }
+  },
+  "scripts": {
+    "build": "stencil build",
+    "start": "stencil build --dev --watch --serve",
+    "dev": "stencil build --watch --output-targets=dist-custom-elements",
+    "test": "stencil test --spec --e2e",
+    "test.watch": "stencil test --spec --e2e --watchAll",
+    "generate": "stencil generate"
+  },
+  "files": [
+    "dist/",
+    "loader/"
+  ],
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "packageManager": "pnpm@10.16.1",
+  "dependencies": {
+    "@kwc-elements/utils": "workspace:*",
+    "@kwc-elements/calendar": "workspace:*",
+    "@kwc-elements/time": "workspace:*",
+    "@kwc-elements/popup": "workspace:*",
+    "@kwc-elements/input-group": "workspace:*"
+  }
+}

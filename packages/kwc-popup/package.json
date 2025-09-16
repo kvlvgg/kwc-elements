@@ -1,0 +1,59 @@
+{
+  "name": "@kwc-elements/popup",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.js",
+  "types": "dist/types/index.d.ts",
+  "collection": "dist/collection/collection-manifest.json",
+  "collection:main": "dist/collection/index.js",
+  "unpkg": "dist/kwc-elements/popup.esm.js",
+  "exports": {
+    "./unused-default-stencil-entry": {
+      "import": "./dist/kwc/kwc.esm.js",
+      "require": "./dist/kwc/kwc.cjs.js"
+    },
+    ".": {
+      "import": "./dist/components/kwc-popup.js",
+      "types": "./dist/components/kwc-popup.d.ts"
+    },
+    "./constants": {
+      "import": "./dist/collection/constants.js",
+      "types": "./dist/types/constants.d.ts"
+    },
+    "./loader": {
+      "import": "./loader/index.js",
+      "require": "./loader/index.cjs",
+      "types": "./loader/index.d.ts"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/types/components.d.ts"
+      ],
+      "constants": [
+        "./dist/types/constants.d.ts"
+      ]
+    }
+  },
+  "scripts": {
+    "build": "stencil build",
+    "start": "stencil build --dev --watch --serve",
+    "dev": "stencil build --watch --output-targets=dist-custom-elements",
+    "test": "stencil test --spec --e2e",
+    "test.watch": "stencil test --spec --e2e --watchAll",
+    "generate": "stencil generate"
+  },
+  "files": [
+    "dist/",
+    "loader/"
+  ],
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "packageManager": "pnpm@10.16.1",
+  "dependencies": {
+    "@kwc-elements/utils": "workspace:*"
+  }
+}
