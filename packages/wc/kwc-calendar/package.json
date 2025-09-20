@@ -1,6 +1,6 @@
 {
   "name": "@kwc-elements/calendar",
-  "version": "1.0.0-beta.10",
+  "version": "1.0.0-beta.11",
   "description": "Beta: Calendar Web Component",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
@@ -63,7 +63,8 @@
   },
   "files": [
     "dist/",
-    "loader/"
+    "loader/",
+    "hydrate/"
   ],
   "keywords": [],
   "author": "",
