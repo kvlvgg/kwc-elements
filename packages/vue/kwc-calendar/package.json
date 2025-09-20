@@ -1,6 +1,6 @@
 {
   "name": "@kwc-elements/vue-calendar",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.2",
   "sideEffects": false,
   "description": "Vue specific wrapper for @kwc-elements/calendar",
   "repository": {
