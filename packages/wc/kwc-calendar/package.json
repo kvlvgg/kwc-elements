@@ -1,0 +1,75 @@
+{
+  "name": "@kwc-elements/calendar",
+  "version": "1.0.0-beta.10",
+  "description": "Beta: Calendar Web Component",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.js",
+  "types": "dist/types/index.d.ts",
+  "collection": "dist/collection/collection-manifest.json",
+  "collection:main": "dist/collection/index.js",
+  "unpkg": "dist/kwc-elements/calendar.esm.js",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs.js",
+      "default": "./dist/index.mjs"
+    },
+    "./hydrate": {
+      "types": "./hydrate/index.d.ts",
+      "import": "./hydrate/index.mjs",
+      "require": "./hydrate/index.js",
+      "default": "./hydrate/index.js"
+    },
+    "./loader": {
+      "types": "./loader/index.d.ts",
+      "import": "./loader/index.js",
+      "require": "./loader/index.js",
+      "default": "./loader/index.js"
+    },
+    "./components/*.js": {
+      "types": "./dist/types/components/*.d.ts",
+      "import": "./dist/components/*.js"
+    },
+    "./components": {
+      "types": "./dist/types/components.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs.js",
+      "default": "./dist/index.js"
+    },
+    "./constants": {
+      "import": "./dist/collection/constants.js",
+      "types": "./dist/types/constants.d.ts"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "constants": [
+        "./dist/types/constants.d.ts"
+      ]
+    }
+  },
+  "scripts": {
+    "build": "stencil build",
+    "start": "stencil build --dev --watch --serve",
+    "dev": "stencil build --watch --output-targets=dist-custom-elements",
+    "test": "stencil test --spec --e2e",
+    "test.watch": "stencil test --spec --e2e --watchAll",
+    "generate": "stencil generate"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kvlvgg/kwc-elements"
+  },
+  "files": [
+    "dist/",
+    "loader/"
+  ],
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "packageManager": "pnpm@10.16.1",
+  "devDependencies": {
+    "@kwc-elements/utils": "workspace:*"
+  }
+}

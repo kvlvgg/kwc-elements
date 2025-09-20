@@ -1,2 +1,4 @@
 packages:
-  - 'packages/*'
+  - 'packages/utils'
+  - 'packages/wc/*'
+  - 'packages/vue/*'

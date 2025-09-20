@@ -1,5 +1,5 @@
 {
-  "name": "@kwc-elements/date-picker",
+  "name": "@kwc-elements/time",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.cjs.js",
@@ -7,20 +7,31 @@
   "types": "dist/types/index.d.ts",
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
-  "unpkg": "dist/kwc-elements/date-picker.esm.js",
+  "unpkg": "dist/kwc-elements/time.esm.js",
   "exports": {
     "./unused-default-stencil-entry": {
-      "import": "./dist/kwc-date-picker/kwc-date-picker.esm.js",
-      "require": "./dist/kwc-date-picker/kwc-date-picker.cjs.js"
+      "import": "./dist/kwc/kwc.esm.js",
+      "require": "./dist/kwc/kwc.cjs.js"
     },
     ".": {
-      "import": "./dist/components/kwc-date-picker.js",
-      "types": "./dist/components/kwc-date-picker.d.ts"
+      "import": "./dist/components/kwc-time.js",
+      "types": "./dist/components/kwc-time.d.ts"
+    },
+    "./constants": {
+      "import": "./dist/collection/constants.js",
+      "types": "./dist/types/constants.d.ts"
     },
     "./loader": {
       "import": "./loader/index.js",
       "require": "./loader/index.cjs",
       "types": "./loader/index.d.ts"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "constants": [
+        "./dist/types/constants.d.ts"
+      ]
     }
   },
   "scripts": {
@@ -35,15 +46,15 @@
     "dist/",
     "loader/"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kvlvgg/kwc-elements"
+  },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "packageManager": "pnpm@10.16.1",
-  "dependencies": {
-    "@kwc-elements/utils": "workspace:*",
-    "@kwc-elements/calendar": "workspace:*",
-    "@kwc-elements/time": "workspace:*",
-    "@kwc-elements/popup": "workspace:*",
-    "@kwc-elements/input-group": "workspace:*"
+  "devDependencies": {
+    "@kwc-elements/utils": "workspace:*"
   }
 }

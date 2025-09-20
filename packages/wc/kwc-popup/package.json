@@ -1,5 +1,5 @@
 {
-  "name": "@kwc-elements/input-group",
+  "name": "@kwc-elements/popup",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.cjs.js",
@@ -7,15 +7,15 @@
   "types": "dist/types/index.d.ts",
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
-  "unpkg": "dist/kwc-elements/input-group.esm.js",
+  "unpkg": "dist/kwc-elements/popup.esm.js",
   "exports": {
     "./unused-default-stencil-entry": {
       "import": "./dist/kwc/kwc.esm.js",
       "require": "./dist/kwc/kwc.cjs.js"
     },
     ".": {
-      "import": "./dist/components/kwc-input-group.js",
-      "types": "./dist/components/kwc-input-group.d.ts"
+      "import": "./dist/components/kwc-popup.js",
+      "types": "./dist/components/kwc-popup.d.ts"
     },
     "./constants": {
       "import": "./dist/collection/constants.js",
@@ -29,6 +29,9 @@
   },
   "typesVersions": {
     "*": {
+      "*": [
+        "./dist/types/components.d.ts"
+      ],
       "constants": [
         "./dist/types/constants.d.ts"
       ]
@@ -46,8 +49,15 @@
     "dist/",
     "loader/"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kvlvgg/kwc-elements"
+  },
   "keywords": [],
   "author": "",
   "license": "MIT",
-  "packageManager": "pnpm@10.16.1"
+  "packageManager": "pnpm@10.16.1",
+  "devDependencies": {
+    "@kwc-elements/utils": "workspace:*"
+  }
 }

@@ -1,5 +1,5 @@
 {
-  "name": "@kwc-elements/time",
+  "name": "@kwc-elements/input-group",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.cjs.js",
@@ -7,15 +7,15 @@
   "types": "dist/types/index.d.ts",
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
-  "unpkg": "dist/kwc-elements/time.esm.js",
+  "unpkg": "dist/kwc-elements/input-group.esm.js",
   "exports": {
     "./unused-default-stencil-entry": {
       "import": "./dist/kwc/kwc.esm.js",
       "require": "./dist/kwc/kwc.cjs.js"
     },
     ".": {
-      "import": "./dist/components/kwc-time.js",
-      "types": "./dist/components/kwc-time.d.ts"
+      "import": "./dist/components/kwc-input-group.js",
+      "types": "./dist/components/kwc-input-group.d.ts"
     },
     "./constants": {
       "import": "./dist/collection/constants.js",
@@ -46,11 +46,12 @@
     "dist/",
     "loader/"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kvlvgg/kwc-elements"
+  },
   "keywords": [],
   "author": "",
   "license": "MIT",
-  "packageManager": "pnpm@10.16.1",
-  "dependencies": {
-    "@kwc-elements/utils": "workspace:*"
-  }
+  "packageManager": "pnpm@10.16.1"
 }
