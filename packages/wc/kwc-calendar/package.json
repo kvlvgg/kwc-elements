@@ -7,7 +7,7 @@
   "types": "dist/types/index.d.ts",
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
-  "unpkg": "dist/kwc-elements/calendar.esm.js",
+  "unpkg": "dist/kwc-calendar/kwc-calendar.esm.js",
   "exports": {
     ".": {
       "types": "./dist/types/index.d.ts",
