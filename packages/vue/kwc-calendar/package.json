@@ -1,23 +1,30 @@
 {
   "name": "@kwc-elements/vue-calendar",
-  "version": "1.0.0-beta.2",
-  "sideEffects": false,
+  "version": "1.0.0",
   "description": "Vue specific wrapper for @kwc-elements/calendar",
+  "type": "module",
+  "sideEffects": false,
+  "homepage": "http://kwc-elements.site/calendar",
   "repository": {
     "type": "git",
     "url": "https://github.com/kvlvgg/kwc-elements"
   },
-  "scripts": {
-    "build": "run-s build.*",
-    "build.clean": "rimraf dist",
-    "build.compile": "tsc -p .",
-    "dev": "pnpm run build.compile --watch",
-    "prettier": "pnpm run prettier.base --write",
-    "prettier.base": "prettier \"./({src,__tests__}/**/*.{ts,tsx,js,jsx})|*.{ts,tsx,js,jsx}\"",
-    "prettier.dry-run": "pnpm run prettier.base --list-different",
-    "test": "vitest run"
+  "keywords": [
+    "kwc-elements",
+    "vue",
+    "vue3",
+    "calendar",
+    "web-components",
+    "ui-component",
+    "stenciljs",
+    "custom-elements"
+  ],
+  "author": {
+    "name": "kvlv.gg",
+    "email": "kvlv.gg@gmail.com",
+    "url": "https://github.com/kvlvgg"
   },
-  "type": "module",
+  "license": "MIT",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -28,6 +35,16 @@
   "files": [
     "dist/"
   ],
+  "scripts": {
+    "build": "run-s build.*",
+    "build.clean": "rimraf dist",
+    "build.compile": "tsc -p .",
+    "dev": "pnpm run build.compile --watch",
+    "prettier": "pnpm run prettier.base --write",
+    "prettier.base": "prettier \"./({src,__tests__}/**/*.{ts,tsx,js,jsx})|*.{ts,tsx,js,jsx}\"",
+    "prettier.dry-run": "pnpm run prettier.base --list-different",
+    "test": "vitest run"
+  },
   "devDependencies": {
     "@vue/test-utils": "^2.4.6",
     "npm-run-all2": "^6.2.3",

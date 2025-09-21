@@ -1,6 +1,6 @@
 {
   "name": "@kwc-elements/calendar",
-  "version": "1.0.0-beta.12",
+  "version": "1.0.0",
   "description": "Beta: Calendar Web Component",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
@@ -8,6 +8,25 @@
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
   "unpkg": "dist/kwc-calendar/kwc-calendar.esm.js",
+  "homepage": "http://kwc-elements.site/calendar",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kvlvgg/kwc-elements"
+  },
+  "keywords": [
+    "kwc-elements",
+    "calendar",
+    "web-components",
+    "ui-component",
+    "stenciljs",
+    "custom-elements"
+  ],
+  "author": {
+    "name": "kvlv.gg",
+    "email": "kvlv.gg@gmail.com",
+    "url": "https://github.com/kvlvgg"
+  },
+  "license": "MIT",
   "exports": {
     ".": {
       "types": "./dist/types/index.d.ts",
@@ -49,6 +68,11 @@
       ]
     }
   },
+  "files": [
+    "dist/",
+    "loader/",
+    "hydrate/"
+  ],
   "scripts": {
     "build": "stencil build",
     "start": "stencil build --dev --watch --serve",
@@ -57,18 +81,6 @@
     "test.watch": "stencil test --spec --e2e --watchAll",
     "generate": "stencil generate"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/kvlvgg/kwc-elements"
-  },
-  "files": [
-    "dist/",
-    "loader/",
-    "hydrate/"
-  ],
-  "keywords": [],
-  "author": "",
-  "license": "MIT",
   "packageManager": "pnpm@10.16.1",
   "devDependencies": {
     "@kwc-elements/utils": "workspace:*"
