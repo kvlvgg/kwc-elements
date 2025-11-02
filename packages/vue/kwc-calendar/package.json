@@ -1,10 +1,10 @@
 {
   "name": "@kwc-elements/vue-calendar",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Vue specific wrapper for @kwc-elements/calendar",
   "type": "module",
   "sideEffects": false,
-  "homepage": "http://kwc-elements.site/calendar",
+  "homepage": "https://kvlvgg.github.io/kwc-docs/calendar/",
   "repository": {
     "type": "git",
     "url": "https://github.com/kvlvgg/kwc-elements"
