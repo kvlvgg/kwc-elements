@@ -1,6 +1,6 @@
 {
   "name": "@kwc-elements/calendar",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Calendar Web Component",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
